@@ -1,10 +1,28 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 1020px;
-  margin: 100px auto;
+  width: 100%;
+  max-height: 1020px;
+  margin: auto auto;
   display: flex;
   flex-direction: column;
+`;
+
+export const Header = styled.header`
+  margin: 30px 30px;
+  align-self: flex-start;
+
+  h1 {
+    font-size: 36px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  span {
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+  }
 `;
 
 export const AddNewPet = styled.button`
@@ -18,7 +36,7 @@ export const AddNewPet = styled.button`
   width: 200px;
   height: 300px;
   transition: background 0.3s;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   background: #fff;
 
