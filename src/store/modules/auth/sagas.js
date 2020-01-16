@@ -21,7 +21,7 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, user));
 
-    history.push('/dashboard');
+    history.push('/mypets');
   } catch (err) {
     toast.error('Usuário e/ou senha inválidos.');
     yield put(signFailure());
