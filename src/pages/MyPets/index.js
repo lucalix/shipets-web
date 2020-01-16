@@ -9,7 +9,7 @@ export default function MyPets() {
     <Container>
       <Header>
         <h1>Meus Pets</h1>
-        <span>Gerencie os pets que você cadastrou</span>
+        <span>Gerencie os pets que você cadastrou.</span>
       </Header>
       <AddNewPet>
         <span>Cadastrar Pet</span>
