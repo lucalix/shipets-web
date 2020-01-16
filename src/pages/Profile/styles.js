@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin: 50px auto;
   background: #fff;
   padding: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 
   form {
@@ -37,7 +37,7 @@ export const Container = styled.div`
     hr {
       border: 0;
       height: 1px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.2);
       margin: 10px 0 20px;
     }
 
