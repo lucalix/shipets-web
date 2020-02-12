@@ -7,6 +7,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 
 import MyPets from '../pages/MyPets';
+import NewPet from '../pages/NewPet';
 import Profile from '../pages/Profile';
 
 export default function Routes() {
@@ -16,6 +17,7 @@ export default function Routes() {
       <Route path="/register" component={SignUp} />
 
       <Route path="/mypets" component={MyPets} isPrivate />
+      <Route path="/newpet" component={NewPet} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );

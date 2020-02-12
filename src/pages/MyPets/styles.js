@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -25,7 +26,7 @@ export const Header = styled.header`
   }
 `;
 
-export const AddNewPet = styled.button`
+export const AddNewPet = styled(Link)`
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -41,7 +42,7 @@ export const AddNewPet = styled.button`
   background: #fff;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.5);
 
     span {
       color: #fff;
