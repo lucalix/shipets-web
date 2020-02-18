@@ -21,6 +21,7 @@ export default function NewPet() {
   const [selectedSpecie, setSelectedSpecie] = useState(null);
   const [statesUf, setStatesUf] = useState([]);
   const [cities, setCities] = useState([]);
+  const [pet, setPet] = useState({});
   const [steps, setSteps] = useState([
     {
       id: 1,
@@ -161,28 +162,21 @@ export default function NewPet() {
   async function handleSubmit({
     name,
     description,
+    sex,
     date_of_birth,
     breed_id,
     citie_id,
   }) {
-    // const response = await api.post(`/teste`, {
-    //   name,
-    //   description,
-    //   breed_id: breed.id,
-    //   citie_id: citie.id,
-    // });
-
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    console.log({
+    const response = await api.post('pets', {
       name,
       description,
+      sex,
       date_of_birth: `${date_of_birth}T23:59:59-03:00`,
       breed_id: Number(breed_id),
       citie_id: Number(citie_id),
-      timezone,
     });
 
+    setPet(response.data);
     handleChangeStep(3, true);
 
     toast.success('Pet cadastrado com sucesso!');

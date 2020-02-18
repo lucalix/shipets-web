@@ -36,22 +36,13 @@ export const AddNewPet = styled(Link)`
   max-height: 300px;
   width: 200px;
   height: 300px;
-  transition: background 0.3s;
+  transition: border 0.3s;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   background: #fff;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.5);
-
-    span {
-      color: #fff;
-      font-weight: bold;
-    }
-
-    svg {
-      color: #fff;
-    }
+    border: 2px solid rgba(0, 0, 0, 0.6);
   }
 
   span {
