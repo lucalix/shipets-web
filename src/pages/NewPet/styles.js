@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 700px;
@@ -77,6 +78,8 @@ export const Specie = styled.li`
 
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
+
+  background: ${props => (props.selected ? 'rgba(0, 0, 0, 0.3)' : '#fff')};
   transition: background 0.3s;
 
   &:hover {
@@ -84,13 +87,65 @@ export const Specie = styled.li`
     cursor: pointer;
   }
 
-  svg {
-  }
-
   span {
     margin-top: 30px;
     font-size: 16px;
     font-weight: bold;
     color: #666;
+  }
+`;
+
+export const Step2 = styled.div`
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    input,
+    textarea,
+    select {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      height: 44px;
+      padding: 0 15px;
+      color: #333;
+      margin: 0 0 10px;
+      font-size: 16px;
+      background: #fff;
+
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    span {
+      color: #fb6f91;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.2);
+      margin: 10px 0 20px;
+    }
+
+    button {
+      margin: 5px 0 0;
+      height: 44px;
+      background: #3b9eff;
+      font-weight: bold;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #fff;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, '#3b9eff')};
+      }
+    }
   }
 `;
