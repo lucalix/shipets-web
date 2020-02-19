@@ -3,6 +3,7 @@ import { Form, Input, Textarea, Select } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
+import history from '~/services/history';
 
 import {
   Container,
@@ -11,6 +12,7 @@ import {
   Step1,
   Specie,
   Step2,
+  Step3,
 } from './styles';
 
 export default function NewPet() {
@@ -21,7 +23,7 @@ export default function NewPet() {
   const [selectedSpecie, setSelectedSpecie] = useState(null);
   const [statesUf, setStatesUf] = useState([]);
   const [cities, setCities] = useState([]);
-  const [pet, setPet] = useState({});
+  const [petImages, setPetImages] = useState([]);
   const [steps, setSteps] = useState([
     {
       id: 1,
@@ -176,10 +178,67 @@ export default function NewPet() {
       citie_id: Number(citie_id),
     });
 
-    setPet(response.data);
+    const formattedPetImages = response.data.images.map(image => {
+      return {
+        ...image,
+        updated: false,
+      };
+    });
+
+    setPetImages(formattedPetImages);
     handleChangeStep(3, true);
 
     toast.success('Pet cadastrado com sucesso!');
+  }
+
+  async function handleChangeFileSelected(event) {
+    const petImageId = Number(event.target.id);
+
+    const data = new FormData();
+
+    data.append('file', event.target.files[0]);
+
+    const response = await api.post('/files', data);
+
+    const { id: file_id, url } = response.data;
+
+    const petImagesUpdated = petImages.map(image => {
+      if (image.id === petImageId) {
+        image = {
+          ...image,
+          url,
+          file_id,
+          updated: true,
+        };
+      }
+
+      return image;
+    });
+
+    setPetImages(petImagesUpdated);
+  }
+
+  async function handleSavePetImages() {
+    const results = [];
+
+    petImages.map(i => {
+      if (i.updated === true) {
+        results.push(api.put(`pets/image/${i.id}`, { file_id: i.file_id }));
+      }
+
+      return i;
+    });
+
+    try {
+      const response = await Promise.all(results);
+
+      if (response) {
+        toast.success('Imagens salvas com sucesso!');
+        history.push('/mypets');
+      }
+    } catch (err) {
+      toast.error('Não foi possível salvar as imagens.');
+    }
   }
 
   return (
@@ -279,6 +338,45 @@ export default function NewPet() {
             <button type="submit">Cadastrar pet</button>
           </Form>
         </Step2>
+      )}
+
+      {steps[2].selected === true && (
+        <Step3>
+          {petImages.map(image => (
+            <li key={image.id}>
+              <label htmlFor={image.id}>
+                {image.url ? (
+                  <img src={image.url} alt="pet" />
+                ) : (
+                  <div>Insira uma foto</div>
+                )}
+
+                <input
+                  type="file"
+                  id={image.id}
+                  accept="image/*"
+                  onChange={handleChangeFileSelected}
+                />
+              </label>
+            </li>
+          ))}
+
+          <button
+            className="save"
+            type="button"
+            onClick={() => handleSavePetImages()}
+          >
+            Salvar
+          </button>
+
+          <button
+            className="exit"
+            type="button"
+            onClick={() => history.push('/mypets')}
+          >
+            Enviar outra hora
+          </button>
+        </Step3>
       )}
     </Container>
   );

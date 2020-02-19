@@ -149,3 +149,79 @@ export const Step2 = styled.div`
     }
   }
 `;
+
+export const Step3 = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  margin: 15px auto 5px;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 240px;
+    min-width: 240px;
+
+    margin: 20px 20px;
+
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+
+    background: ${props => (props.selected ? 'rgba(0, 0, 0, 0.3)' : '#fff')};
+    transition: background 0.3s;
+
+    &:hover {
+      border: 2px solid rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    input {
+      display: none;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 240px;
+      min-width: 260px;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    margin: 30px 10px 0;
+    height: 44px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  button.save {
+    background: #3b9eff;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#3b9eff')};
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  button.exit {
+    background: #f64c75;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#f64c75')};
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+  }
+`;
